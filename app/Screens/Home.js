@@ -72,7 +72,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.setState({ fullData: this.state.data });
+    const { data } = this.state;
+    this.setState({ fullData: data });
   }
 
   contains = ({ food_name }, query) => {
@@ -83,8 +84,9 @@ class Home extends Component {
   };
 
   handleSearch = text => {
+    const { fullData } = this.state;
     const formatQuery = text.charAt(0).toUpperCase() + text.slice(1);
-    const data = _.filter(this.state.fullData, food => {
+    const data = _.filter(fullData, food => {
       return this.contains(food, formatQuery);
     });
     this.setState({ query: formatQuery, data });
@@ -171,7 +173,7 @@ class Home extends Component {
   );
 
   renderDataFoods = () => {
-    const { data } = this.state;
+    const { data, refreshing } = this.state;
     return (
       <FlatList
         data={data}
@@ -179,48 +181,45 @@ class Home extends Component {
         showsHorizontalScrollIndicator={false}
         renderItem={this.listItems}
         refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
+          <RefreshControl refreshing={refreshing} onRefresh={this._onRefresh} />
         }
       />
     );
   };
 
-  searchData = () => (
-    <View style={Styles.searchContainer}>
-      <Text style={Styles.searchText}>Search: </Text>
-      <View style={Styles.searchTextContentWrapper}>
-        <Text style={Styles.searchTextContent}>
-          {this.state.query ? this.state.query : '-'}
-        </Text>
+  searchData = () => {
+    const { query } = this.state;
+    return (
+      <View style={Styles.searchContainer}>
+        <Text style={Styles.searchText}>Search: </Text>
+        <View style={Styles.searchTextContentWrapper}>
+          <Text style={Styles.searchTextContent}>{query ? query : '-'}</Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  };
 
-  mainContent = () => (
-    <View style={Styles.mainContent}>
-      <View
-        style={[
-          Styles.tabContainer,
-          { marginBottom: this.state.query ? 60 : 20 },
-        ]}>
-        <View style={Styles.tabHeaderLeft}>
-          <Ripple>
-            <Text style={Styles.textTabLeft}>Following</Text>
-          </Ripple>
-          {this.state.query ? this.searchData() : null}
+  mainContent = () => {
+    const { query } = this.state;
+    return (
+      <View style={Styles.mainContent}>
+        <View style={[Styles.tabContainer, { marginBottom: query ? 60 : 20 }]}>
+          <View style={Styles.tabHeaderLeft}>
+            <Ripple>
+              <Text style={Styles.textTabLeft}>Following</Text>
+            </Ripple>
+            {query ? this.searchData() : null}
+          </View>
+          <View style={Styles.tabHeaderRight}>
+            <Ripple>
+              <Text style={Styles.textTabRight}>Recent</Text>
+            </Ripple>
+          </View>
         </View>
-        <View style={Styles.tabHeaderRight}>
-          <Ripple>
-            <Text style={Styles.textTabRight}>Recent</Text>
-          </Ripple>
-        </View>
+        {this.renderDataFoods()}
       </View>
-      {this.renderDataFoods()}
-    </View>
-  );
+    );
+  };
 
   render() {
     return (
