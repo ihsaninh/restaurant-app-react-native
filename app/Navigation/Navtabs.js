@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import Home from '../Screens/Home';
+import HomePage from '../Screens/HomePage/HomePage.container';
 import Nothing from '../Screens/Nothing';
 
 const BottomTabs = createBottomTabNavigator(
   {
     Home: {
-      screen: Home,
+      screen: HomePage,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <Image
