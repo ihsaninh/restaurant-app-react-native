@@ -30,7 +30,7 @@
    $ cd Restaurant-App-React-Native
    $ npm install or yarn install (if you using yarn)
    ```
-3. Run Facebook Clone
+3. Run Restaurant App
    ```
    $ react-native run-android or react-native run-ios
    ```
