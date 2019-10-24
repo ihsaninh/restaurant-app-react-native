@@ -37,13 +37,10 @@
 
 ## Screenshoot
 <div align="center">
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/LOGIN.png">   
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/FEED.png">  
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/FRIENDLIST.png">    
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/ADDSTATUS.png">   
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/MARKETPLACE.png">   
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/MORESETTING.png">   
-    <img width="200" src="https://github.com/ihsaninh/fb-clone-react-native/blob/master/screenshots/NOTIFICATION.png">   
+    <img width="200" src="https://github.com/ihsaninh/Restaurant-App-React-Native/blob/master/ss1.jpg">   
+    <img width="200" src="https://github.com/ihsaninh/Restaurant-App-React-Native/blob/master/ss2.jpg">  
+    <img width="200" src="https://github.com/ihsaninh/Restaurant-App-React-Native/blob/master/ss3.jpg">    
+    <img width="200" src="https://github.com/ihsaninh/Restaurant-App-React-Native/blob/master/ss4.jpg">    
 </div>
 
 
