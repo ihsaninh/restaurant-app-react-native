@@ -1,15 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import {
+  FlatList,
   View,
   Text,
   Image,
-  FlatList,
-  TextInput,
-  Dimensions,
   RefreshControl,
+  Dimensions,
+  TextInput,
 } from 'react-native';
-import _ from 'lodash';
 import { Styles } from './HomePage.component.styles';
 import Ripple from 'react-native-material-ripple';
 
@@ -89,40 +88,45 @@ class HomePage extends Component {
   handleSearch = text => {
     const { fullData } = this.state;
     const formatQuery = text.charAt(0).toUpperCase() + text.slice(1);
-    const data = _.filter(fullData, food => {
+    const data = fullData.filter(food => {
       return this.contains(food, formatQuery);
     });
     this.setState({ query: formatQuery, data });
   };
 
   onRefresh = () => {
-    this.setState({ refreshing: true });
+    const { fullData } = this.state;
+    this.setState({ refreshing: true, query: '', data: fullData });
     setTimeout(() => this.setState({ refreshing: false }), 1000);
   };
 
-  renderHeader = () => (
-    <View style={Styles.headerContainer}>
-      <View style={Styles.imgHeaderLeft}>
-        <Image
-          source={require('../../Assets/img/chef13.jpg')}
-          style={Styles.imgHeaderLeft}
-        />
+  renderHeader = () => {
+    const { query } = this.state;
+    return (
+      <View style={Styles.headerContainer}>
+        <View style={Styles.imgHeaderLeft}>
+          <Image
+            source={require('../../Assets/img/chef13.jpg')}
+            style={Styles.imgHeaderLeft}
+          />
+        </View>
+        <View style={Styles.textInputStyle}>
+          <TextInput
+            style={Styles.textInput}
+            placeholder="Search any food here.."
+            onChangeText={this.handleSearch}
+            value={query}
+          />
+        </View>
+        <View style={Styles.notifIcon}>
+          <Image
+            source={require('../../Assets/img/ic_notif.png')}
+            style={Styles.notifIcon}
+          />
+        </View>
       </View>
-      <View style={Styles.textInputStyle}>
-        <TextInput
-          style={Styles.textInput}
-          placeholder="Search any food here.."
-          onChangeText={this.handleSearch}
-        />
-      </View>
-      <View style={Styles.notifIcon}>
-        <Image
-          source={require('../../Assets/img/ic_notif.png')}
-          style={Styles.notifIcon}
-        />
-      </View>
-    </View>
-  );
+    );
+  };
 
   listItems = ({ item }) => (
     <View style={Styles.dataFoodContainer}>
