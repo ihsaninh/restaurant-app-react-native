@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import {
@@ -72,9 +71,13 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    this.renderFulldata();
+  }
+
+  renderFulldata = () => {
     const { data } = this.state;
     this.setState({ fullData: data });
-  }
+  };
 
   contains = ({ food_name }, query) => {
     if (food_name.includes(query)) {
@@ -92,7 +95,7 @@ class HomePage extends Component {
     this.setState({ query: formatQuery, data });
   };
 
-  _onRefresh = () => {
+  onRefresh = () => {
     this.setState({ refreshing: true });
     setTimeout(() => this.setState({ refreshing: false }), 1000);
   };
@@ -181,7 +184,7 @@ class HomePage extends Component {
         showsHorizontalScrollIndicator={false}
         renderItem={this.listItems}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={this._onRefresh} />
+          <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} />
         }
       />
     );

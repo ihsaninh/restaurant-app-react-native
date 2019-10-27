@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withNavigation } from 'react-navigation';
 
-class AuthLoading extends Component {
+class AuthLoading extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.navigation.navigate('Home');
