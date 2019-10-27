@@ -78,8 +78,8 @@ class HomePage extends Component {
     this.setState({ fullData: data });
   };
 
-  contains = ({ food_name }, query) => {
-    if (food_name.includes(query)) {
+  contains = ({ food_name, chef_name }, query) => {
+    if (food_name.includes(query) || chef_name.includes(query)) {
       return true;
     }
     return false;
