@@ -195,6 +195,15 @@ const Styles = StyleSheet.create({
     textAlign: 'right',
     paddingLeft: 20,
   },
+  renderEmptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 24,
+    paddingTop: 50,
+  },
 });
 
 export { Styles };

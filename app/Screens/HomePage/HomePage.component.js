@@ -179,6 +179,12 @@ class HomePage extends Component {
     </View>
   );
 
+  renderEmpty = () => (
+    <View style={Styles.renderEmptyContainer}>
+      <Text style={Styles.emptyText}>Data tidak ditemukan</Text>
+    </View>
+  );
+
   renderDataFoods = () => {
     const { data, refreshing } = this.state;
     return (
@@ -190,6 +196,7 @@ class HomePage extends Component {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} />
         }
+        ListEmptyComponent={this.renderEmpty}
       />
     );
   };
